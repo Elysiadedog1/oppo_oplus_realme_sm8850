@@ -546,21 +546,13 @@ jobs:
         run: |
           cd kernel_workspace
           echo "替换内核版本后缀..."
-          if [[ -n "${{ github.event.inputs.kernel_suffix }}" ]]; then
-            echo "当前内核版本后缀：${{ github.event.inputs.kernel_suffix }}"
-            for f in ./common/scripts/setlocalversion; do
-              sed -i "\$s|echo \"\\\$res\"|echo \"-${{ github.event.inputs.kernel_suffix }}\"|" "$f"
-            done
-            sudo sed -i 's/-4k/-${{ github.event.inputs.KERNEL_SUFFIX }}/g' ./common/arch/arm64/configs/gki_defconfig
-          else
-            echo "当前内核版本后缀：${{ env.KERNEL_NAME }}"
-            for f in ./common/scripts/setlocalversion; do
-              sed -i "\$s|echo \"\\\$res\"|echo \"-${{ env.KERNEL_NAME }}\"|" "$f"
-            done
-            sudo sed -i 's/-4k/-${{ env.KERNEL_NAME }}/g' ./common/arch/arm64/configs/gki_defconfig
-          fi
-          sed -i 's/${scm_version}//' ./common/scripts/setlocalversion
+          for f in ./common/scripts/setlocalversion; do
+            sed -i "s|\$|\\\$res\\\echo \"-${{ env.KERNEL_NAME }}\"|" "$f"
+          done
+          sudo sed -i "s/-4k/-${{ env.KERNEL_NAME }}/g" ./common/arch/arm64/configs/gki_defconfig
+          sed -i "s|scm_version//|./common/scripts/setlocalversion|" ./common/arch/arm64/configs/gki_defconfig
           echo "CONFIG_LOCALVERSION_AUTO=n" >> ./common/arch/arm64/configs/gki_defconfig
+          echo "当前内核版本后缀: ${{ env.KERNEL_NAME }}"
            
                 - name: 构建内核
                 run: |
