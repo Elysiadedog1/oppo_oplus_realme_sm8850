@@ -562,8 +562,8 @@ jobs:
           sed -i 's/${scm_version}//' ./common/scripts/setlocalversion
           echo "CONFIG_LOCALVERSION_AUTO=n" >> ./common/arch/arm64/configs/gki_defconfig
            
-            - name: 构建内核
-        run: |
+                - name: 构建内核
+                run: |
           WORKDIR="$(pwd)"
           export PATH="/usr/lib/ccache:$PATH"
           export PATH="$WORKDIR/kernel_workspace/clang19/bin:$PATH"
@@ -680,6 +680,7 @@ jobs:
           ccache -s
           echo "编译后空间:"
           df -h
+
 
 
       - name: 保存新的 ccache 缓存
