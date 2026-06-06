@@ -542,7 +542,7 @@ jobs:
           curl -sSL https://github.com/cctv18/Baseband-guard/raw/master/setup.sh | bash
           sed -i '/^config LSM$/,/^help$/{ /^[[:space:]]*default/ { /baseband_guard/! s/selinux/selinux,baseband_guard/ } }' security/Kconfig
 
-      - name: 添加制作名称
+            - name: 添加制作名称
         run: |
           cd kernel_workspace
           echo "替换内核版本后缀..."
