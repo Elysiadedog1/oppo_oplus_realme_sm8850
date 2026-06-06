@@ -1,4 +1,4 @@
-name: (新版米/欧加真通用) 6.12.23 GKI内核快速构建
+me: (新版米/欧加真通用) 6.12.23 GKI内核快速构建
 
 env:
   TZ: Asia/Shanghai
@@ -595,8 +595,8 @@ jobs:
           wget https://github.com/$GITHUB_REPOSITORY/raw/refs/heads/$GITHUB_REF_NAME/lib/libfakestat.so
           wget https://github.com/$GITHUB_REPOSITORY/raw/refs/heads/$GITHUB_REF_NAME/lib/libfaketimeMT.so
           chmod 777 ./*.so
-          export FAKESTAT="2025-05-25 12:00:00"
-          export FAKETIME="@2025-05-25 13:00:00"
+          export FAKESTAT="2026-03-17 12:00:00"
+          export FAKETIME="@2026-03-17 13:00:00"
           echo "FAKESTAT=$FAKESTAT" >> $GITHUB_ENV
           echo "FAKETIME=$FAKETIME" >> $GITHUB_ENV
           SO_DIR=$(pwd)
@@ -766,7 +766,7 @@ jobs:
           else
             FULL_VERSION=${{ env.KERNEL_VERSION }}.${CLEAN_SUB_VERSION}-${{ env.KERNEL_NAME }}
           fi
-          TIME_NOW="$(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S')"
+          TIME_NOW="2026-03-17 12:00:00"
           echo "Author: $GITHUB_ACTOR" > ./ak3.log
           echo "Repo: $GITHUB_REPOSITORY" >> ./ak3.log
           echo "Branch: $GITHUB_REF_NAME" >> ./ak3.log
@@ -830,8 +830,8 @@ jobs:
             echo "FULL_VERSION=$FULL_VERSION" >> $GITHUB_ENV
             export FULL_VERSION=$FULL_VERSION
           fi
-          TIME="$(TZ='Asia/Shanghai' date +'%y%m%d%H%M%S')"
-          TIME_FORM="$(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S')"
+          TIME="260317120000"
+          TIME_FORM="2026-03-17 12:00:00"
           echo "TIME=$TIME" >> $GITHUB_ENV
           echo "TIME_FORM=$TIME_FORM" >> $GITHUB_ENV
           TAG_HEAD="OPPO-OPlus-Realme-build"
