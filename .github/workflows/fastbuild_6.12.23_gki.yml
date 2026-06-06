@@ -726,7 +726,7 @@ jobs:
             echo "FULL_VERSION=$FULL_VERSION" >> $GITHUB_ENV
             export FULL_VERSION=$FULL_VERSION
           fi
-          TIME="260317120000"
+          TIME="260317120000-${GITHUB_RUN_ID}"
           TIME_FORM="2026-03-17 12:00:00"
           echo "TIME=$TIME" >> $GITHUB_ENV
           echo "TIME_FORM=$TIME_FORM" >> $GITHUB_ENV
@@ -744,6 +744,7 @@ jobs:
             KSU_TYPENAME="无内置KSU"
           fi
           echo "KSU_TYPENAME=$KSU_TYPENAME" >> $GITHUB_ENV
+
       - name: 创建发布
         id: create_release
         env:
